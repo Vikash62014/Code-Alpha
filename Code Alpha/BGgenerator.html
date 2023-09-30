@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to right, #FF5733, #D62828);
+            color: white;
+        }
+
+        #colorCode {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Background Generator</h1>
+    <div>
+        <label for="colorInput">Select a color:</label>
+        <input type="color" id="colorInput" value="#FF5733">
+    </div>
+    <button id="generateButton">Generate Random Color</button>
+    <p id="colorCode">#FF5733</p>
+
+    <script>
+        const colorInput = document.getElementById('colorInput');
+        const generateButton = document.getElementById('generateButton');
+        const colorCode = document.getElementById('colorCode');
+
+        // Function to generate a random hex color
+        function generateRandomColor() {
+            const randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+            return randomColor;
+        }
+
+        // Event listener for the "Generate Random Color" button
+        generateButton.addEventListener('click', () => {
+            const randomColor = generateRandomColor();
+            document.body.style.background = randomColor;
+            colorInput.value = randomColor;
+            colorCode.textContent = randomColor;
+        });
+
+        // Event listener for the color input
+        colorInput.addEventListener('input', () => {
+            const selectedColor = colorInput.value;
+            document.body.style.background = selectedColor;
+            colorCode.textContent = selectedColor;
+        });
+    </script>
+</body>
+</html>

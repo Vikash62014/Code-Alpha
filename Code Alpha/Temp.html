@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #909090;
+      text-align: center;
+      margin: 50px;
+    }
+
+    #converter {
+      max-width: 400px;
+      margin: auto;
+      background-color: #7acaec;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    input {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<div id="converter">
+  <h2>Temperature Converter</h2>
+
+  <label for="temperature">Hey Please Enter Temperature:</label>
+  <input type="text" id="temperature" placeholder="Enter temperature..." />
+
+  <label for="scale">Select Scale:</label>
+  <select id="scale">
+    <option value="celsius">Celsius</option>
+    <option value="fahrenheit">Fahrenheit</option>
+    <option value="kelvin">Kelvin</option>
+  </select>
+
+  <button onclick="convertTemperature()">Convert</button>
+
+  <h3>Result:</h3>
+  <p id="result"></p>
+</div>
+
+<script>
+  function convertTemperature() {
+    // Get input values
+    var temperatureInput = document.getElementById('temperature').value;
+    var scale = document.getElementById('scale').value;
+
+    // Check if the input is a valid number
+    if (isNaN(temperatureInput)) {
+      alert('Please enter a valid number for temperature.');
+      return;
+    }
+
+    // Convert temperature
+    var convertedTemperature;
+    switch (scale) {
+      case 'celsius':
+        convertedTemperature = temperatureInput;
+        break;
+      case 'fahrenheit':
+        convertedTemperature = (parseFloat(temperatureInput) * 9 / 5) + 32;
+        break;
+      case 'kelvin':
+        convertedTemperature = parseFloat(temperatureInput) + 273.15;
+        break;
+      default:
+        alert('Invalid scale selected.');
+        return;
+    }
+
+    // Display the result
+    document.getElementById('result').innerText = `Converted Temperature: ${convertedTemperature.toFixed(2)} ${scale.toUpperCase()}`;
+  }
+</script>
+
+</body>
+</html>
